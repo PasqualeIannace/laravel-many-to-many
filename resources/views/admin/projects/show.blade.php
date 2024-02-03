@@ -13,10 +13,20 @@
                 <h5><strong>{{$project->name}} </strong></h5>
                 <p>{{ $project->description }}</p>
                 <p><strong>Data creazione</strong> {{ $project->dataCreation }}</p>
-                <p><strong>Langua</strong> {{ $project->language }}</p>
-                <p><strong>Piattaforma di sviluppo</strong> {{ $project->type->platform }}</p>
-                <p><strong>Linguaggio</strong> {{ $project->type->language }}</p>
-                <img src="{{ $project->type->image }}" class="img-fluid w3_5" alt="Responsive Image">
+                <p><strong>Lingua</strong> {{ $project->language }}</p>
+                <p><strong>Sistema operativo</strong> {{ $project->type->platform }}</p>
+
+                <p><strong>Piattaforma di sviluppo</strong></p>
+                <ul>
+                    @foreach ($project->technologies as $technology)
+                    <li>{{ $technology->language }}</li>
+                    @endforeach
+                </ul>
+
+                @foreach ($project->technologies as $technology)
+                <img src="{{ $technology->image }}" class="img-fluid w3_5" alt="Responsive Image">
+                @endforeach
+
                 <span class="d-flex gap-2 "></span>
             </div>
 

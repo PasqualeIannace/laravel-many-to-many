@@ -6,25 +6,26 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
+use App\Models\Technology;
 use Illuminate\Support\Facades\Validator;
 
 
 class ProjectController extends Controller
 {
-    
+
     public function validation($data)
-     {
+    {
 
         $validated = Validator::make($data, [
-            "name"=> "required|min:5|max:50",
-            "description"=> "required|min:5|max:300",
-            "image"=> "required|min:5|max:300",
-            "dataCreation"=> "required|min:5|max:100",
-            "language"=> "required|min:3|max:200",
-            ])->validate();
+            "name" => "required|min:5|max:50",
+            "description" => "required|min:5|max:300",
+            "image" => "required|min:5|max:300",
+            "dataCreation" => "required|min:5|max:100",
+            "language" => "required|min:3|max:200",
+        ])->validate();
 
-            return $validated;
-    }  
+        return $validated;
+    }
     public function index()
     {
         $projects = Project::all();
@@ -59,7 +60,8 @@ class ProjectController extends Controller
     public function show(string $id)
     {
         $project = Project::find($id);
-        return view('admin.projects.show', compact('project'));
+        $technology = Technology::find($id);
+        return view('admin.projects.show', compact('project', 'technology'));
     }
 
     /**
@@ -74,18 +76,15 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      */
     public function update(ProjectRequest $request, Project $project)
-    {
-        {
-            $data =$request ->all();
-    
-            $dati_validati =$this->validation($data);
-    
+    { {
+            $data = $request->all();
+
+            $dati_validati = $this->validation($data);
+
             $project->update($dati_validati);
-    
+
             return redirect()->route('admin.projects.show', $project->id);
-    
         }
-    
     }
 
     /**
