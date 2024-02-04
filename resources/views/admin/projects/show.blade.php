@@ -19,7 +19,7 @@
                 <p><strong>Piattaforma di sviluppo</strong></p>
                 <ul>
                     @foreach ($project->technologies as $technology)
-                    <li>{{ $technology->language }}</li>
+                    <li>{{ $technology->program_language }}</li>
                     @endforeach
                 </ul>
 

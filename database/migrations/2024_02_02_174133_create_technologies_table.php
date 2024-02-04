@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('technologies', function (Blueprint $table) {
             $table->id();
-            $table->string("language");
+            $table->string("program_language");
             $table->string("image");
             $table->timestamps();
         });

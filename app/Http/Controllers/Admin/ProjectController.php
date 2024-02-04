@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Technology;
+use App\Models\Type;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -37,7 +38,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $technologies = Technology::all();
+        $types = Type::all();
+        return view('admin.projects.create', compact('technologies', 'types'));
     }
 
     /**
@@ -51,6 +54,10 @@ class ProjectController extends Controller
         $newProject->fill($validati);
         $newProject->save();
 
+        if ($request->technologies) {
+            $newProject->technologies()->attach($request->technologies);
+        }
+
         // return redirect()->route("admin.projects.show", $newPost->id);
         return redirect()->route("admin.projects.index");
     }
@@ -60,8 +67,7 @@ class ProjectController extends Controller
     public function show(string $id)
     {
         $project = Project::find($id);
-        $technology = Technology::find($id);
-        return view('admin.projects.show', compact('project', 'technology'));
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
