@@ -31,12 +31,12 @@
                 <label for="language" class="form-label">Lingua</label>
                 <input type="text" class="form-control" id="language" name="language" value="{{ $project->language }}">
             </div>
-            @foreach ($projects->technologies as $technology)
+            {{-- @foreach ($projects->technologies as $technology)
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="{{ $technology->id }}">
                 <label class="form-check-label" for="inlineCheckbox1">{{ $technology->language }}</label>
             </div>
-            @endforeach
+            @endforeach --}}
             <button type="submit" class="btn btn-primary">Inserisci</button>
         </form>
 

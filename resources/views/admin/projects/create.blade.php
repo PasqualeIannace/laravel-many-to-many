@@ -62,8 +62,8 @@
                 <h5>Piattaforma</h5>
                 @foreach ($types as $type)
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="type" id="{{ $type->id }}"
-                        value="{{ $type->id }}">
+                    <input class="form-check-input" type="checkbox" name="type_id" id="{{ $type->id }}"
+                        value="{{ old('type_id') }}">
                     <label class="form-check-label" for="{{ $type->id }}">{{ $type->platform }}</label>
                 </div>
                 @endforeach

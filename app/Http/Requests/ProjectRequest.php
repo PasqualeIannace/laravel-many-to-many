@@ -22,6 +22,7 @@ class ProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
+            // "type_id" => ["required"],
             "name" => ["required", "min:5", "max:50"],
             "description" => ["required", "min:5", "max:300"],
             "image" => ["required", "min:5", "max:300"],
